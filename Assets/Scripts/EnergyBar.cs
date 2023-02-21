@@ -3,6 +3,7 @@ using UnityEngine.UI;
 
 public class EnergyBar : MonoBehaviour
 {
+    public Player player;
     public Slider energyBar;
     public int maxEnergy = 2000;
     private int amount;
@@ -49,6 +50,11 @@ public class EnergyBar : MonoBehaviour
             currentEnergy -= amount;
             energyBar.value = currentEnergy;
         }
+        if (energyBar.value <= 0)
+        {
+            this.player.gameObject.SetActive(false);
+            FindObjectOfType<GameManager>().PlayerDied(true);
+        }
     }
 
     public void AddEnergy()
@@ -56,12 +62,17 @@ public class EnergyBar : MonoBehaviour
         if (currentEnergy + amount <= maxEnergy)
         {
             currentEnergy += amount;
-            Debug.Log(string.Format("current energy = {0}", currentEnergy));
             energyBar.value = currentEnergy;
         } 
         else if (currentEnergy + amount > maxEnergy)
         {
             energyBar.value = maxEnergy;
         }
+    }
+
+    public void ResetEnergy()
+    {
+        currentEnergy = maxEnergy;
+        energyBar.value = maxEnergy;
     }
 }

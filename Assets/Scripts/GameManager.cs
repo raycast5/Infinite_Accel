@@ -1,13 +1,18 @@
 using UnityEngine;
 using UnityEngine.UI;
+
+
 public class GameManager : MonoBehaviour
 {
+    public EnergyBar energy;
     public ParticleSystem explosion;
     public Player player;
     public float respawnTime = 3.0f;
     public float ghostTime = 3.0f;
-    public int score { get; private set; }
+    public float highscore = 0;
+    public float score { get; private set; }
     public Text scoreText;
+    public Text highscoreText;
     public int lives { get; private set; }
     public Text livesText;
     public GameObject GameOverUI;
@@ -15,6 +20,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        highscore = PlayerPrefs.GetFloat("highScore");
         NewGame();
     }
 
@@ -50,15 +56,23 @@ public class GameManager : MonoBehaviour
         GameOverUI.SetActive(false);
 
         this.score = 0;
+        EnergyBar.instance.ResetEnergy();
         SetLives(3);
         Respawn();
     }
 
-    public void PlayerDied()
+    public void PlayerDied(bool energyDepl)
     {
         this.explosion.transform.position = this.player.transform.position;
         this.explosion.Play();
-        SetLives(this.lives -1);
+        if (energyDepl == true)
+        {
+            SetLives(0);
+        }
+        else
+        {
+             SetLives(this.lives -1);
+        }
         if (this.lives <= 0)
         {
             GameOver();
@@ -92,6 +106,12 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        if (score > highscore)
+        {
+            PlayerPrefs.SetFloat("highScore", score);
+            highscore = score;
+        }
+        highscoreText.text = ("High Score: " + highscore.ToString());
         GameOverUI.SetActive(true);
     }
 

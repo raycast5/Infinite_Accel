@@ -32,7 +32,7 @@ public class Player : MonoBehaviour
             
             this.gameObject.SetActive(false);
 
-            FindObjectOfType<GameManager>().PlayerDied();
+            FindObjectOfType<GameManager>().PlayerDied(false);
         }
     }
     /// <summary>
