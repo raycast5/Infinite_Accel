@@ -10,12 +10,48 @@ public class GameManager : MonoBehaviour
     public Text scoreText;
     public int lives { get; private set; }
     public Text livesText;
+    public GameObject GameOverUI;
     Vector3  startPos = new Vector3(-6, 0, 0);
 
     void Start()
     {
-        this.lives = 3;
+        NewGame();
+    }
+
+    private void Update()
+    {
+        if (lives <= 0 && Input.GetKeyDown(KeyCode.Return))
+        {
+            NewGame();
+        }
+    }
+    private void FixedUpdate()
+    {
+        if (score < int.MaxValue && GameOverUI.activeSelf == false)
+        {
+            score += 1;
+            scoreText.text = score.ToString();
+        }
+    }
+    
+    public void NewGame()
+    {
+        Asteroid[] asteroids = FindObjectsOfType<Asteroid>();
+        Energy energies = FindObjectOfType<Energy>();
+
+        for (int i = 0; i < asteroids.Length; i++)
+        {
+            Destroy(asteroids[i].gameObject);
+        } 
+        if (energies != null)
+        {
+            Destroy(energies.gameObject);
+        }
+        GameOverUI.SetActive(false);
+
         this.score = 0;
+        SetLives(3);
+        Respawn();
     }
 
     public void PlayerDied()
@@ -54,18 +90,9 @@ public class GameManager : MonoBehaviour
         this.player.gameObject.layer = LayerMask.NameToLayer("Player");
     }
 
-    private void GameOver()
+    public void GameOver()
     {
-        ///to do
-    }
-
-    private void FixedUpdate()
-    {
-        if (score < int.MaxValue)
-        {
-            score += 1;
-            scoreText.text = score.ToString();
-        }
+        GameOverUI.SetActive(true);
     }
 
     private void SetLives(int lives)
