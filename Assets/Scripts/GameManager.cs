@@ -25,6 +25,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void AsteroidDestroyed(Energy energy)
+    {
+        this.explosion.transform.position = energy.transform.position;
+        this.explosion.Play();
+
+    }
+
     private void Respawn()
     {
         this.player.transform.position = startPos;

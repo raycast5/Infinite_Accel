@@ -2,10 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DeployAsteroid : MonoBehaviour
+public class DeployEnergy : MonoBehaviour
 {
-    public Asteroid AsteroidPrefab;
-    public float respawnTime = 0.4f;
+    public Energy EnergyPrefab;
+    public float respawnTime = 10.0f;
     private Vector2 screenBounds;
     public float astPosition = 1.5f;
 
@@ -21,7 +21,7 @@ public class DeployAsteroid : MonoBehaviour
         float variance = Random.Range(-60.0f, 60.0f);
         Quaternion rotation = Quaternion.AngleAxis(variance, Vector3.forward);
         Vector3 position = new Vector3(screenBounds.x * astPosition, Random.Range(-screenBounds.y, screenBounds.y), 0.0f);
-        Asteroid ast = Instantiate(this.AsteroidPrefab, position, rotation);
+        Energy ast = Instantiate(this.EnergyPrefab, position, rotation);
         ast.size = Random.Range(ast.minSize, ast.maxSize);
     }
 

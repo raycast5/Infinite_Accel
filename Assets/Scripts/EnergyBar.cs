@@ -4,8 +4,10 @@ using UnityEngine.UI;
 public class EnergyBar : MonoBehaviour
 {
     public Slider energyBar;
-    public int maxEnergy = 500;
+    public int maxEnergy = 2000;
+    private int amount;
     private int currentEnergy;
+    public int decreaseRate = 1;
 
     public static EnergyBar instance;
 
@@ -19,9 +21,25 @@ public class EnergyBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        amount = maxEnergy / 4;
         currentEnergy = maxEnergy;
         energyBar.maxValue = maxEnergy;
         energyBar.value = maxEnergy;
+    }
+
+    /// <summary>
+    /// This function is called every fixed framerate frame, if the MonoBehaviour is enabled.
+    /// </summary>
+    private void FixedUpdate()
+    {
+        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        {
+            UseEnergy(decreaseRate);
+        }
+        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        {
+            UseEnergy(decreaseRate);
+        }
     }
 
     public void UseEnergy(int amount)
@@ -30,6 +48,20 @@ public class EnergyBar : MonoBehaviour
         {
             currentEnergy -= amount;
             energyBar.value = currentEnergy;
+        }
+    }
+
+    public void AddEnergy()
+    {
+        if (currentEnergy + amount <= maxEnergy)
+        {
+            currentEnergy += amount;
+            Debug.Log(string.Format("current energy = {0}", currentEnergy));
+            energyBar.value = currentEnergy;
+        } 
+        else if (currentEnergy + amount > maxEnergy)
+        {
+            energyBar.value = maxEnergy;
         }
     }
 }

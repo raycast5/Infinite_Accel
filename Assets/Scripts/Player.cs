@@ -4,7 +4,6 @@ public class Player : MonoBehaviour
 {
     public Rigidbody2D _rigidbody;
     public float speed = 5.0f;
-    public int decreaseRate = 1;
     
     private void Awake()
     {
@@ -16,13 +15,10 @@ public class Player : MonoBehaviour
         if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
         {
             this.transform.position += Vector3.up * this.speed * Time.deltaTime;
-            EnergyBar.instance.UseEnergy(decreaseRate);
-
         }
         else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
         {
             this.transform.position += Vector3.down * this.speed * Time.deltaTime;
-            EnergyBar.instance.UseEnergy(decreaseRate);
         }
 
     }
@@ -37,6 +33,19 @@ public class Player : MonoBehaviour
             this.gameObject.SetActive(false);
 
             FindObjectOfType<GameManager>().PlayerDied();
+        }
+    }
+    /// <summary>
+    /// Sent when another object enters a trigger collider attached to this
+    /// object (2D physics only).
+    /// </summary>
+    /// <param name="collision">The other Collider2D involved in this collision.</param>
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Energy")
+        {
+            Debug.Log("Collision with energy detected");
+            EnergyBar.instance.AddEnergy();
         }
     }
 }
