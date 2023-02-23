@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class Player : MonoBehaviour
 {
+    [SerializeField] AudioSource movement;
     public Rigidbody2D _rigidbody;
     public float speed = 5.0f;
     
@@ -12,9 +13,18 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
+        if (Input.GetKeyDown(KeyCode.W) || Input.GetKeyDown(KeyCode.UpArrow))
+        {
+            movement.Play();
+        }
+        if (Input.GetKeyDown(KeyCode.S) || Input.GetKeyDown(KeyCode.DownArrow))
+        {
+            movement.Play();
+        }
         if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             this.transform.position += Vector3.up * this.speed * Time.deltaTime;
+            
         }
         else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {

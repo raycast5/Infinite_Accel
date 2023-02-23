@@ -4,6 +4,10 @@ using UnityEngine.UI;
 
 public class GameManager : MonoBehaviour
 {
+    [SerializeField] AudioSource bgm;
+    [SerializeField] AudioSource gameOverSound;
+    [SerializeField] AudioSource explosionSound;
+    [SerializeField] AudioSource energyUp;
     public EnergyBar energy;
     public ParticleSystem explosion;
     public Player player;
@@ -44,6 +48,7 @@ public class GameManager : MonoBehaviour
     {
         Asteroid[] asteroids = FindObjectsOfType<Asteroid>();
         Energy energies = FindObjectOfType<Energy>();
+        bgm.Play();
 
         for (int i = 0; i < asteroids.Length; i++)
         {
@@ -64,6 +69,7 @@ public class GameManager : MonoBehaviour
     public void PlayerDied(bool energyDepl)
     {
         this.explosion.transform.position = this.player.transform.position;
+        explosionSound.Play();
         this.explosion.Play();
         if (energyDepl == true)
         {
@@ -76,6 +82,7 @@ public class GameManager : MonoBehaviour
         if (this.lives <= 0)
         {
             GameOver();
+            bgm.Stop();
         }
         else
         {
@@ -87,6 +94,7 @@ public class GameManager : MonoBehaviour
     {
         this.explosion.transform.position = energy.transform.position;
         this.explosion.Play();
+        energyUp.Play();
 
     }
 
@@ -112,6 +120,7 @@ public class GameManager : MonoBehaviour
             highscore = score;
         }
         highscoreText.text = ("High Score: " + highscore.ToString());
+        gameOverSound.Play();
         GameOverUI.SetActive(true);
     }
 
