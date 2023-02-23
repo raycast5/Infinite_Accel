@@ -12,11 +12,11 @@ public class Player : MonoBehaviour
 
     private void Update()
     {
-        if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow))
         {
             this.transform.position += Vector3.up * this.speed * Time.deltaTime;
         }
-        else if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow))
+        else if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow))
         {
             this.transform.position += Vector3.down * this.speed * Time.deltaTime;
         }
@@ -44,7 +44,6 @@ public class Player : MonoBehaviour
     {
         if (collision.gameObject.tag == "Energy")
         {
-            Debug.Log("Collision with energy detected");
             EnergyBar.instance.AddEnergy();
         }
     }
