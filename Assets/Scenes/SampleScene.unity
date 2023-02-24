@@ -627,7 +627,6 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
-  - component: {fileID: 519420034}
   - component: {fileID: 519420035}
   m_Layer: 0
   m_Name: Main Camera
@@ -715,24 +714,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 336617765fddf4957ae3493a353ddb49, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  energyInterval: 80
+  EnergyPrefab: {fileID: 8360622204581195367, guid: e07cd2928e7a9418d9574527a7ee8f8d, type: 3}
   AsteroidPrefab: {fileID: 4646576111275443470, guid: ae740d99afc074cfa9e24a5fb47aea5e, type: 3}
   respawnTime: 0.3
   astPosition: 1.2
---- !u!114 &519420034
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 519420028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e22da5c2e058c432583e1b36058a6d5c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  EnergyPrefab: {fileID: 8360622204581195367, guid: e07cd2928e7a9418d9574527a7ee8f8d, type: 3}
-  respawnTime: 20
-  astPosition: 1.5
 --- !u!114 &519420035
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -77,7 +77,7 @@ public class GameManager : MonoBehaviour
         }
         else
         {
-             SetLives(this.lives -1);
+            SetLives(this.lives -1);
         }
         if (this.lives <= 0)
         {
