@@ -144,5 +144,5 @@ MonoBehaviour:
   size: 1
   minSize: 0.5
   maxSize: 1.5
-  speed: 8
+  speed: 9
   turnSpeed: 1

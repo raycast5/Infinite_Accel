@@ -45,6 +45,7 @@ public class Player : MonoBehaviour
             FindObjectOfType<GameManager>().PlayerDied(false);
         }
     }
+    
     /// <summary>
     /// Sent when another object enters a trigger collider attached to this
     /// object (2D physics only).

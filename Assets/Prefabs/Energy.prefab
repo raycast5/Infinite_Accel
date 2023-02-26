@@ -141,7 +141,7 @@ MonoBehaviour:
   size: 1
   minSize: 0.5
   maxSize: 1.5
-  speed: 8
+  speed: 9
 --- !u!198 &411794619090726150
 ParticleSystem:
   m_ObjectHideFlags: 0

@@ -717,7 +717,7 @@ MonoBehaviour:
   energyInterval: 80
   EnergyPrefab: {fileID: 8360622204581195367, guid: e07cd2928e7a9418d9574527a7ee8f8d, type: 3}
   AsteroidPrefab: {fileID: 4646576111275443470, guid: ae740d99afc074cfa9e24a5fb47aea5e, type: 3}
-  respawnTime: 0.3
+  respawnTime: 0.25
   astPosition: 1.2
 --- !u!114 &519420035
 MonoBehaviour:
