@@ -48,7 +48,6 @@ public class GameManager : MonoBehaviour
     {
         Asteroid[] asteroids = FindObjectsOfType<Asteroid>();
         Energy energies = FindObjectOfType<Energy>();
-        bgm.Play();
 
         for (int i = 0; i < asteroids.Length; i++)
         {
@@ -59,7 +58,7 @@ public class GameManager : MonoBehaviour
             Destroy(energies.gameObject);
         }
         GameOverUI.SetActive(false);
-
+        bgm.Play();
         this.score = 0;
         EnergyBar.instance.ResetEnergy();
         SetLives(3);

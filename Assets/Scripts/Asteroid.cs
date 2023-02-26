@@ -9,7 +9,6 @@ public class Asteroid : MonoBehaviour
     public float minSize = 0.5f;
     public float maxSize = 1.5f;
     public float speed = 10.0f;
-    public float turnSpeed = 1.0f;
     private Rigidbody2D _rigidbody;
     private Vector2 screenBounds;
     

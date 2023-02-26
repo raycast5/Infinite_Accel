@@ -6,7 +6,7 @@ public class EnergyBar : MonoBehaviour
     public Player player;
     public Slider energyBar;
     public int maxEnergy = 2000;
-    private int amount;
+    private int increaseAmount;
     private int currentEnergy;
     public int decreaseRate = 1;
 
@@ -22,7 +22,7 @@ public class EnergyBar : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        amount = maxEnergy / 4;
+        increaseAmount = maxEnergy / 4;
         currentEnergy = maxEnergy;
         energyBar.maxValue = maxEnergy;
         energyBar.value = maxEnergy;
@@ -59,12 +59,12 @@ public class EnergyBar : MonoBehaviour
 
     public void AddEnergy()
     {
-        if (currentEnergy + amount <= maxEnergy)
+        if (currentEnergy + increaseAmount <= maxEnergy)
         {
-            currentEnergy += amount;
+            currentEnergy += increaseAmount;
             energyBar.value = currentEnergy;
         } 
-        else if (currentEnergy + amount > maxEnergy)
+        else if (currentEnergy + increaseAmount > maxEnergy)
         {
             energyBar.value = maxEnergy;
         }
