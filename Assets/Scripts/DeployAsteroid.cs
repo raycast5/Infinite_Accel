@@ -15,17 +15,17 @@ public class DeployAsteroid : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));
-        StartCoroutine(asteroidWave());
+        screenBounds = Camera.main.ScreenToWorldPoint(new Vector3(Screen.width, Screen.height, Camera.main.transform.position.z));      // Sets Screen Bounds
+        StartCoroutine(asteroidWave());         // Starts Co-Routine
     }
 
     private void spawnAsteroid()
     {
-        float variance = Random.Range(-60.0f, 60.0f);
-        Quaternion rotation = Quaternion.AngleAxis(variance, Vector3.forward);
-        Vector3 position = new Vector3(screenBounds.x * astPosition, Random.Range(-screenBounds.y, screenBounds.y), 0.0f);
-        Asteroid ast = Instantiate(this.AsteroidPrefab, position, rotation);
-        ast.size = Random.Range(ast.minSize, ast.maxSize);
+        float variance = Random.Range(-60.0f, 60.0f);       // Variance of the angle of rotation of Asteroid Sprite.
+        Quaternion rotation = Quaternion.AngleAxis(variance, Vector3.forward);       // Quaternion that controls the angle axis of rotation using variance
+        Vector3 position = new Vector3(screenBounds.x * astPosition, Random.Range(-screenBounds.y, screenBounds.y), 0.0f); // Spawn position of asteroid at random point along Y axis.
+        Asteroid ast = Instantiate(this.AsteroidPrefab, position, rotation);        // Instantiation of Asteroid prefab  using previous parameters.
+        ast.size = Random.Range(ast.minSize, ast.maxSize);      //Randomization of Asteroid size constrained by given range.
     }
 
     private void spawnEnergy()
@@ -37,16 +37,16 @@ public class DeployAsteroid : MonoBehaviour
         ast.size = Random.Range(ast.minSize, ast.maxSize);
     }
 
-    IEnumerator asteroidWave()
+    IEnumerator asteroidWave()      // Co-Routine to control Asteroid spawn  
     {
         while(true)
         {
-            yield return new WaitForSeconds(respawnTime);
-            if (activations < energyInterval)
+            yield return new WaitForSeconds(respawnTime);       // Waits for specified time to continue.
+            if (activations < energyInterval)                   // Counts no of Asteroid spawns and launches energy on given intervals.
             {
                 spawnAsteroid();
                 activations ++;
-            }
+            }                                                               
             else
             {
                 spawnEnergy();
