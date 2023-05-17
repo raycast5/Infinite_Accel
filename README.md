@@ -8,7 +8,7 @@ Star Momentum is a retro 2D endless runner based on the principle of efficiency,
 
 
 ## Play
-https://raycast5.itch.io/star-momentum![image](https://github.com/raycast5/Star_Momentum/assets/104580766/9f63b9cf-2eae-4608-a42c-08f1167180ae)
+<a href="https://raycast5.itch.io/star-momentum"><img src="Assets/Thumbnail.png" alt="Play Star Momentum"/> </a>
 
 ## Requirements
 
